@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kodołamacz Robocode</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+    <!--http://www.google.com/fonts -->
+      @font-face{
+        font-family: 'Droid Serif';
+        src: url('fonts/DroidSerif.ttf');
+      }
+      
+      @font-face{
+        font-family: 'Droid Serif';
+        src: url('fonts/DroidSerif-Bold.ttf');
+        font-weight: bold;
+      }
+
+      @font-face{
+        font-family: 'Droid Serif';
+        src: url('fonts/DroidSerif-Italic.ttf');
+        font-style: italic;
+      }
+
+      @font-face{
+        font-family: 'Droid Serif';
+        src: url('fonts/DroidSerif-BoldItalic.ttf');
+        font-weight: bold;
+        font-style: italic;
+      }      
+      
+      @font-face{
+        font-family: 'Ubuntu Mono';
+        src: url('fonts/UbuntuMono-Regular.ttf');
+      }    
+      
+      @font-face{
+        font-family: 'Ubuntu Mono';
+        src: url('fonts/UbuntuMono-Bold.ttf');
+        font-weight: bold;
+      }
+
+      @font-face{
+        font-family: 'Ubuntu Mono';
+        src: url('fonts/UbuntuMono-Italic.ttf');
+        font-style: italic;
+      }
+
+      @font-face{
+        font-family: 'Ubuntu Mono';
+        src: url('fonts/UbuntuMono-BoldItalic.ttf');
+        font-weight: bold;
+        font-style: italic;
+      }          
+      
+      body { font-family: 'Droid Serif'; } 	  
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }  
+      
+    </style>
+	<link rel="stylesheet" href="mermaid.css">
+	<!-- /* Slideshow styles */ -->
+	<link rel="stylesheet" type="text/css" href="css/styles.css">	
+
+  </head>
+  <body>
+    <textarea id="source">
+background-image: url(img/kl-title43.png)
+class: title-slaid, center, middle
+<br/><br/><br/><br/>
+#.center[Robocode]
+<br/><br/>
+##.right[Build the best, destroy the rest!]
+<br/><br/><br/>
+_.right.tt[k.koziol@sages.com.pl]_
+.left[![:scale 10%](img/sages.png)]
+
+---
+layout:true
+class: slaid
+background-image: url(img/kl-slaid43.png)
+
+---
+class: middle
+# Jak będzie przebiegał warsztat
+.big[
+- ?  
+- Wprowadzenie
+- ?
+- Zakodujmy coś wreście - czyli warsztat właściwy ;) 
+- Lunch
+- Kodowania ciąg dalszy
+- Zakończenie
+]
+
+---
+#To i owo o Prowadzącym...
+##mgr inż. Krzysztof Kozioł
+.left-column64[
+- Ponad 20 lat w zawodzie
+- Głównie praca z Java, Orcale i PL/SQL
+- Trener w Sages zaangażowany w
+  - http://stacja.it
+  - http://kodolamacz.pl
+- Współorganizator konferencji Confitura
+  - http://confitura.pl
+  - [kanał YT](https://www.youtube.com/channel/UCkVjQGf_e0JmlonPMS4VNXQ)
+- Zaangażowany w WJUG 
+  - http://warszawa.jug.pl
+  - http://jinkubator.pl
+  - [kanał YT](https://www.youtube.com/channel/UC2coGyxf5x_CzJ3l4F-N-Sw)
+- LinkedIn https://pl.linkedin.com/in/krzysiekkoziol
+- te slajdy: http://kkoziol.github.io 
+]
+.right-column64[
+.right[![:scale 71%](img/kkoziol2.jpg)]
+]
+
+.right[
+![:scale 15%](img/confitura.jpg)
+![:scale 15%](img/wjug.jpg)]
+
+---
+class: top
+
+# Zasady warsztatu
+
+- Mówimy sobie po imieniu
+- Wyciszamy komórki
+- Zadajemy pytania ;)
+- Prosimy o pomoc jeżeli zagubilismy się lub zostaliśmy w tyle
+- Pomagamy sobie na wzajem
+
+
+
+???
+http://www.mobilefish.com/services/wanted_poster/wanted_poster.php
+.one-column[]
+  
+---
+layout:false
+background-image: url(img/kl-title43.png)
+class: title-slaid, center, middle
+<br/><br/><br/><br/>
+#.center[![:scale 60%](img/robocode_logo_tanks.jpg)]
+<br/>
+##.right[Co to jest?]
+<br/>
+.left[![:scale 10%](img/sages.png)]
+
+---
+layout:true
+class: slaid
+background-image: url(img/kl-slaid43.png)
+
+---
+class: top
+## Robocode - czyli?
+
+- Robocode to łatwy w użyciu symulator pola walki napisany w Javie
+- Tworzysz robota który jest wrzucany na pole walki i dalej juz radzi sobie sam
+przeciwko innym robotom innych programistów
+- Roboty pisze się w Javie
+- Poczatkujący programiści mogą sie nauczyć
+calling API code, reading Javadocs, inheritance, inner classes, event handling, ...
+- zaawansowani programiści mogą wyostrzyc swoje umiejetności dobrze sie bawiąc przy tym.
+- Jest to tez dobra platforma do nauki AI i Machine learning
+
+---
+class: top
+## Robocode - historia
+
+Robocode to "dziecko" Mathew Nelsona, inżyniera z działu Internet Advanced Technologyies firmy IBM. 
+
+http://robowiki.net/wiki/Main_Page
+
+
+
+---
+class: top
+
+## Anatomia - robota
+
+- Body - porusza sie w przód/tył i skręty prawo lewo
+- Gun - strzela pociskami i może obracać się w prawo albo lewo
+- Radar - wykrywa przeciwników, może sie obracac w prawo albo lewo, niezależnie od działa.
+
+.center[![:scale 50%](img/robot-anatomy.jpg)]
+
+---
+class: top
+
+## Fizyka gry - koordynaty i kierunki
+
+- Koordynaty
+  - system kartezjański
+  - (0,0) znajduje się w lewym dolnym rogu
+- Kąty i obroty
+  - przyjeto konwencję zgodną z ruchem wskazówek zegara
+  - 0/360 stopni to północ
+- Rozmiar robota
+ - 36x36 pixeli
+ - troche mniejszy niz animowany obrazek
+ - ten kwadrat sie nie obraca! (nie zależnie od zwrotu robota) 
+
+.center[![:scale 60%](img/field-cords.gif)]
+
+---
+class: top
+
+## Fizyka gry - Czas i odległości
+
+- Czas
+  - Jedna jednostka czasu jest zwana tikiem
+  - 1 tik = 1 tura
+- Odległości
+  - Generalnie jedna jednostka odległości to 1 pixel
+  - Pole gry jest jednak skalowane do ekranu i wygladac może to troche inaczej
+  - do pomiaru odległosci używane sa "double" więc można wykonywac ruchy o części pixela ;)
+
+---
+class: top
+
+## Fizyka gry - Ruch
+
+- Przyspieszenie (a) (acceleration)
+  - Robot może przyspieszać 1 pixel/turę
+  - Robot może zwalniać 2 pixele/turę
+  - O te wartości dba sam symulator
+- Prędkość (v) (velocity)
+  - v=a*t,
+  - Maksymalna prędkość robota to 8 pixeli/turę
+  - zwrot (heading) kierunek w którym porusza sie robot
+- Odległość (d) (distance)
+  - d = v*t  
+
+---
+class: top
+
+## Fizyka gry - obroty
+
+- rotacja podstawy
+  - Maksymalny skręt = (10 - 0.75 * abs(v)) deg/tura
+  - Krótko mówiąc im szybciej jedziesz tym wolniej skrecasz
+- rotacja działa
+  - Maksymalny skręt = 20 deg/ ture
+  - Ta wielkość dodaje sie do aktualnego skrętu podstawy!
+- rotacja radaru
+  - Maksymalny skręt = 45 deg/ ture
+  - Ta wielkość dodaje sie do aktualnego skrętu działa!
+
+---
+class: top
+
+## Fizyka gry - pociski
+
+- Zniszczenia (ubytek energi)
+  - 4*energia strału
+  - Jeżeli energia strzału > 1 to trafienie generuje dodatkowe zniszczenia = 2*(energia - 1)
+  - 4 * bullet power + 2 * max(bullet power - 1 , 0)
+- Predkość pocisku
+  - 20 - 3 * energia strzału
+  - prędkość robota nie dodaje sie do predkości pocisku
+  - pocisk nie ma zasięgu...?
+- Temperatura działa
+  - 1 + energia strzału / 5
+  - Nie można strzelać gdy działo jest nie ostygnięte
+  - Na początku bitwy wszystkei działa sa gorące
+  - Prędkość stygnięcia = 0.1/ tura  (jeden pocisk siły 3 na 16 tur)
+- Zysk energi za trafienie
+  - 3 * energia strzału
+
+---
+class: top
+
+## Fizyka gry - kolizje
+
+- z innym robotem
+  - Każdy robot otrzymuje uszkodzenia w wysokości 0.6.
+  - Jeżeli robot poruszał się "od kolizji" nie zostanie zatrzymany
+- ze scianami  
+  - Zaawansowane roboty otrzymują = abs(V)*0.5-1 (ale nigdy mniej niż 0)
+  - Zwykłe roboty i juniorRoboty nie otrzymuja zniszczeń od ścian
+  
+---
+class: top
+
+## Fizyka gry - pętla
+
+1. Pole bitwy jest odrysowywane
+1. Wszystkie roboty wykonuja swój kod, az do momentu kiedy podejmą akcje (wtedy są pauzowane)
+1. Czas zostaje uaktualniony (t++)
+1. Wszystkie pociski są przemieszczane (także te dopiero co wystrzelone) i sprawdzane sa ewentualne kolizje.
+1. Wszystkie roboty sa przemieszczane i aktualizowane w takiej kolejnosci(działo, radar, zwrot, przyspieszenie, prędkość, odległość)
+1. Wszystkie roboty dokonują skanowania (radar) (i ewentualnie otrzymuja wiadomości zespołowe)
+1. Wszystkie roboty są wznawiane.
+1. Każdy robot procesuje swoja kolejke zdarzeń
+  
+---
+layout:false
+background-image: url(img/kl-title43.png)
+class: title-slaid, center, middle
+<br/><br/><br/><br/>
+#.center[TDD]
+<br/><br/>
+##.right[Wprowadzenie]
+<br/><br/><br/><br/>
+.left[![:scale 10%](img/sages.png)]
+
+---
+layout:true
+class: slaid
+background-image: url(img/kl-slaid43.png)
+
+---
+class: top
+## TDD - definicja
+
+<br/><br/><br/>
+.center[
+## Test Deriven Developement  
+]
+<br/>
+### to proces polegający na przygotowywaniu testów przed napisaniem kodu rozwiązania.  
+### Jest to odwrotność tradycyjnego podejścia.
+
+--
+
+.left.footnote[.red.bold[*]Prosta definicja? O co więc całe te "Hallo"?]
+
+---
+layout:false
+background-image: url(img/kl-title43-czitt.png)
+class: title-slaid, center, middle
+<br/><br/><br/><br/>
+#.center[Warsztat]
+<br/><br/>
+##.right[zakodujmy coś wreście ;)]
+<br/><br/><br/><br/>
+.left[![:scale 10%](img/sages.png)]
+
+---
+layout:true
+class: slaid
+background-image: url(img/kl-slaid43.png)
+
+---
+# Środowisko pracy
+<br/>
+### Tworzymy katalogi
+- C:\Java
+- C:\Java\eclipse
+- C:\Java\wrsp_KiK
+
+### Instalacja Javy JDK
+- Oracle Java JDK 1.8.121 - Odpalamy po prostu instaler
+
+### Instalacja Eclipse
+- rozpakowyjemy ZIPa do katalogu C:\Java\eclipse
+
+---
+
+---
+layout:false
+background-image: url(img/kl-title43-czitt.png)
+class: title-slaid, center, middle
+<br/><br/><br/><br/>
+#.center[Koniec]
+<br/><br/>
+##.right[Dziekuję za uwage!]
+<br/><br/><br/><br/>
+.left[![:scale 10%](img/sages.png)]
+
+    </textarea>
+    <script src="js/remark-latest.min.js">
+    </script>
+	
+    <script src="js/mermaid.min.js"></script>
+    
+ <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>	
+	
+    <script>	  
+      remark.macros.scale = function (percentage) {
+         var url = this;
+         return '<img src="' + url + '" style="width: ' + percentage + '" />';
+      };	  
+	
+      var slideshow = remark.create({
+      // Set the slideshow display ratio
+      // Default: '4:3'
+      // Alternatives: '16:9', ...
+      ratio: '4:3',
+
+      // Navigation options
+      navigation: {
+      // Enable or disable navigating using scroll
+      // Default: true
+      // Alternatives: false
+      scroll: false,
+
+      // Enable or disable navigation using touch
+      // Default: true
+      // Alternatives: false
+      touch: false,
+
+      // Enable or disable navigation using click
+      // Default: false
+      // Alternatives: true
+      click: false
+	  },
+      // Customize slide number label, either using a format string..
+      slideNumberFormat: 'Slide %current% of %total%',
+      // .. or by using a format function
+      slideNumberFormat: function (current, total) {
+      return current + '/' + total;
+      },
+
+      // Enable or disable counting of incremental slides in the slide counting
+      countIncrementalSlides: true,
+	  /*highlightLanguage: 'java',*/
+      /*arta, ascetic, dark, default, far, github, googlecode, idea, ir_black, magula, monokai, rainbow, solarized-dark, solarized-light, sunburst, tomorrow, tomorrow-night-blue, tomorrow-night-bright, tomorrow-night, tomorrow-night-eighties, vs, zenburn */
+      highlightStyle: 'magula',
+	  highlightLines: true
+	  });
+	  
+      // Setup MathJax
+      MathJax.Hub.Config({
+          tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+      });
+      MathJax.Hub.Queue(function() {
+          $(MathJax.Hub.getAllJax()).map(function(index, elem) {
+              return(elem.SourceElement());
+          }).parent().addClass('has-jax');
+      });
+
+      MathJax.Hub.Configured();	  	  
+    </script>	
+    <script>mermaid.initialize({startOnLoad:true});</script>		
+  </body>
+</html>
