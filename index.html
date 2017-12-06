@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
   <head>
     <title>Kodołamacz Robocode</title>
@@ -83,12 +83,12 @@ background-image: url(img/kl-slaid43.png)
 class: middle
 # Jak będzie przebiegał warsztat
 .big[
-- ?  
-- Wprowadzenie
-- ?
+- Poznajmy się
+- Wprowadzenie teoretyczne
 - Zakodujmy coś wreście - czyli warsztat właściwy ;) 
 - Lunch
 - Kodowania ciąg dalszy
+- Zawody - jak starczy czasu ;)
 - Zakończenie
 ]
 
@@ -123,19 +123,30 @@ class: middle
 class: top
 
 # Zasady warsztatu
-
+.big[
 - Mówimy sobie po imieniu
 - Wyciszamy komórki
 - Zadajemy pytania ;)
-- Prosimy o pomoc jeżeli zagubilismy się lub zostaliśmy w tyle
+- Prosimy o pomoc jeżeli zagubilismy się  
+	lub zostaliśmy w tyle
 - Pomagamy sobie na wzajem
+- Nie hałasujemy, nie przeszkadzamy innym
+]
 
+---
+class: top
 
-
-???
-http://www.mobilefish.com/services/wanted_poster/wanted_poster.php
-.one-column[]
-  
+# Cele warsztatu
+.big[
+- Główny
+  - ćwiczenie wzorca Strategia
+  - ćwiczenie wzorca Stan
+  - poznanie technik refaktoryzacji
+- Dalszy
+  - dobra zabawa! :)
+  - stworzenie robota "kilera"
+  - twój własny tajny cel ;)
+]  
 ---
 layout:false
 background-image: url(img/kl-title43.png)
@@ -155,32 +166,45 @@ background-image: url(img/kl-slaid43.png)
 ---
 class: top
 ## Robocode - czyli?
-
+.big[
 - Robocode to łatwy w użyciu symulator pola walki napisany w Javie
-- Tworzysz robota który jest wrzucany na pole walki i dalej juz radzi sobie sam
-przeciwko innym robotom innych programistów
-- Roboty pisze się w Javie
-- Poczatkujący programiści mogą sie nauczyć
-calling API code, reading Javadocs, inheritance, inner classes, event handling, ...
-- zaawansowani programiści mogą wyostrzyc swoje umiejetności dobrze sie bawiąc przy tym.
-- Jest to tez dobra platforma do nauki AI i Machine learning
+]
+--
+.big[
+- Tworzysz robota który jest wrzucany na pole walki i dalej już radzi sobie sam
+]
+--
+.big[
+- Roboty, oczywiście pisze się w Javie
+]
+--
+.big[
+- Można dość prosto stworzyć skutecznie działającego robota, JuniorRobot, Robot, AdvancedRobot
+]
+--
+.big[
+- Jest to też dobra platforma do nauki AI i Machine learning
+]
 
 ---
 class: top
 ## Robocode - historia
-
+.big[
 Robocode to "dziecko" Mathew Nelsona, inżyniera z działu Internet Advanced Technologyies firmy IBM. 
 
-http://robowiki.net/wiki/Main_Page
+http://robocode.sourceforge.net/  
 
+http://robowiki.net/wiki/Main_Page  
 
+Początki platformy sięgaja 2001 roku.
+]
 
 ---
 class: top
 
 ## Anatomia - robota
 
-- Body - porusza sie w przód/tył i skręty prawo lewo
+- Body - porusza się w przód/tył i skręty prawo lewo
 - Gun - strzela pociskami i może obracać się w prawo albo lewo
 - Radar - wykrywa przeciwników, może sie obracac w prawo albo lewo, niezależnie od działa.
 
@@ -192,36 +216,41 @@ class: top
 ## Fizyka gry - koordynaty i kierunki
 
 - Koordynaty
-  - system kartezjański
-  - (0,0) znajduje się w lewym dolnym rogu
+  - system kartezjański, (0,0) znajduje się w lewym dolnym rogu
 - Kąty i obroty
-  - przyjeto konwencję zgodną z ruchem wskazówek zegara
-  - 0/360 stopni to północ
+  - przyjeto konwencję zgodną z ruchem wskazówek zegara, 0/360 stopni to północ
 - Rozmiar robota
- - 36x36 pixeli
- - troche mniejszy niz animowany obrazek
- - ten kwadrat sie nie obraca! (nie zależnie od zwrotu robota) 
+ - 36x36 pixeli, trochę mniejszy niż animowany obrazek
+ - ten kwadrat się nie obraca! (nie zależnie od zwrotu robota) 
 
-.center[![:scale 60%](img/field-cords.gif)]
+.center[![:scale 57%](img/field-cords.gif)]
+
+---
+class: top
+
+## Fizyka gry - koordynaty i kierunki
+
+.center[![:scale 90%](img/AbsoluteRelativeAngles.png)]
 
 ---
 class: top
 
 ## Fizyka gry - Czas i odległości
-
+.big[
 - Czas
   - Jedna jednostka czasu jest zwana tikiem
   - 1 tik = 1 tura
 - Odległości
   - Generalnie jedna jednostka odległości to 1 pixel
-  - Pole gry jest jednak skalowane do ekranu i wygladac może to troche inaczej
-  - do pomiaru odległosci używane sa "double" więc można wykonywac ruchy o części pixela ;)
+  - Pole gry jest jednak skalowane do ekranu i wygladać może to trochę inaczej
+  - do pomiaru odległosci używane sa "double" więc można wykonywać ruchy o części pixela ;)
+]
 
 ---
 class: top
 
 ## Fizyka gry - Ruch
-
+.big[
 - Przyspieszenie (a) (acceleration)
   - Robot może przyspieszać 1 pixel/turę
   - Robot może zwalniać 2 pixele/turę
@@ -232,12 +261,12 @@ class: top
   - zwrot (heading) kierunek w którym porusza sie robot
 - Odległość (d) (distance)
   - d = v*t  
-
+]
 ---
 class: top
 
 ## Fizyka gry - obroty
-
+.big[
 - rotacja podstawy
   - Maksymalny skręt = (10 - 0.75 * abs(v)) deg/tura
   - Krótko mówiąc im szybciej jedziesz tym wolniej skrecasz
@@ -247,7 +276,7 @@ class: top
 - rotacja radaru
   - Maksymalny skręt = 45 deg/ ture
   - Ta wielkość dodaje sie do aktualnego skrętu działa!
-
+]
 ---
 class: top
 
@@ -259,13 +288,13 @@ class: top
   - 4 * bullet power + 2 * max(bullet power - 1 , 0)
 - Predkość pocisku
   - 20 - 3 * energia strzału
-  - prędkość robota nie dodaje sie do predkości pocisku
+  - prędkość robota nie dodaje się do prędkości pocisku
   - pocisk nie ma zasięgu...?
 - Temperatura działa
   - 1 + energia strzału / 5
   - Nie można strzelać gdy działo jest nie ostygnięte
-  - Na początku bitwy wszystkei działa sa gorące
-  - Prędkość stygnięcia = 0.1/ tura  (jeden pocisk siły 3 na 16 tur)
+  - Na początku bitwy wszystkie działa są gorące
+  - Prędkość stygnięcia = 0.1/ tura  (po pocisku siły 3 - 16 tur)
 - Zysk energi za trafienie
   - 3 * energia strzału
 
@@ -273,36 +302,44 @@ class: top
 class: top
 
 ## Fizyka gry - kolizje
-
+.big[
 - z innym robotem
   - Każdy robot otrzymuje uszkodzenia w wysokości 0.6.
   - Jeżeli robot poruszał się "od kolizji" nie zostanie zatrzymany
 - ze scianami  
   - Zaawansowane roboty otrzymują = abs(V)*0.5-1 (ale nigdy mniej niż 0)
   - Zwykłe roboty i juniorRoboty nie otrzymuja zniszczeń od ścian
-  
+]
+
 ---
 class: top
 
 ## Fizyka gry - pętla
 
 1. Pole bitwy jest odrysowywane
-1. Wszystkie roboty wykonuja swój kod, az do momentu kiedy podejmą akcje (wtedy są pauzowane)
+1. Wszystkie roboty wykonuja swój kod, aż do momentu kiedy podejmą akcje (wtedy są pauzowane)
 1. Czas zostaje uaktualniony (t++)
 1. Wszystkie pociski są przemieszczane (także te dopiero co wystrzelone) i sprawdzane sa ewentualne kolizje.
-1. Wszystkie roboty sa przemieszczane i aktualizowane w takiej kolejnosci(działo, radar, zwrot, przyspieszenie, prędkość, odległość)
+1. Wszystkie roboty sa przemieszczane i aktualizowane w takiej kolejności(działo, radar, zwrot, przyspieszenie, prędkość, odległość)
 1. Wszystkie roboty dokonują skanowania (radar) (i ewentualnie otrzymuja wiadomości zespołowe)
 1. Wszystkie roboty są wznawiane.
-1. Każdy robot procesuje swoja kolejke zdarzeń
+1. Każdy robot procesuje swoją kolejkę zdarzeń
+
+---
+class: top
+
+## Architektura symulatora
+
+.center[![:scale 90%](img/Robo-code-arch.gif)]
   
 ---
 layout:false
 background-image: url(img/kl-title43.png)
 class: title-slaid, center, middle
 <br/><br/><br/><br/>
-#.center[TDD]
+#.center[Symulator]
 <br/><br/>
-##.right[Wprowadzenie]
+##.right[Setup środowiska]
 <br/><br/><br/><br/>
 .left[![:scale 10%](img/sages.png)]
 
@@ -313,30 +350,13 @@ background-image: url(img/kl-slaid43.png)
 
 ---
 class: top
-## TDD - definicja
-
-<br/><br/><br/>
-.center[
-## Test Deriven Developement  
+## Setup
+.big[
+- instalacja javy
+- instalacja eclipse
+- instalacja git(?)
+- instalacja robocode
 ]
-<br/>
-### to proces polegający na przygotowywaniu testów przed napisaniem kodu rozwiązania.  
-### Jest to odwrotność tradycyjnego podejścia.
-
---
-
-.left.footnote[.red.bold[*]Prosta definicja? O co więc całe te "Hallo"?]
-
----
-layout:false
-background-image: url(img/kl-title43-czitt.png)
-class: title-slaid, center, middle
-<br/><br/><br/><br/>
-#.center[Warsztat]
-<br/><br/>
-##.right[zakodujmy coś wreście ;)]
-<br/><br/><br/><br/>
-.left[![:scale 10%](img/sages.png)]
 
 ---
 layout:true
@@ -345,7 +365,7 @@ background-image: url(img/kl-slaid43.png)
 
 ---
 # Środowisko pracy
-<br/>
+
 ### Tworzymy katalogi
 - C:\Java
 - C:\Java\eclipse
@@ -358,15 +378,234 @@ background-image: url(img/kl-slaid43.png)
 - rozpakowyjemy ZIPa do katalogu C:\Java\eclipse
 
 ---
+class: top
+## Setup
+.big[
+### Instalacja robocode
+  - [link do pobrania](https://sourceforge.net/projects/robocode/files/) 
+  - [Create_a_Project](http://robowiki.net/wiki/Robocode/Eclipse/Create_a_Project)
+  - [Running_from_Eclipse](http://robowiki.net/wiki/Robocode/Eclipse/Running_from_Eclipse)
+  - [Add_a_Robot_Project](http://robowiki.net/wiki/Robocode/Add_a_Robot_Project)
+  - [Debugging_Robot](http://robowiki.net/wiki/Robocode/Eclipse/Debugging_Robot)
+  
+### Pierwszy robot
+[My_First_Robot](http://robowiki.net/wiki/Robocode/My_First_Robot)  
+]
+
+
+---
+# Cel #01 - SittingDuck 
+
+<br/>
+.big[
+- http://robowiki.net/wiki/SittingDuck
+- [Kod](http://robocode.sourcearchive.com/documentation/1.6.2/SittingDuck_8java-source.html)
+
+W zasadzie nic nie robi...  
+wystarczy tylko wycelować i strzelić
+
+]
+
+---
+# Cel #02 - Target 
+
+<br/>
+.big[
+- http://robowiki.net/wiki/Target
+- [Kod](http://robocode.sourcearchive.com/documentation/1.6.2/Target_8java-source.html)
+
+ten ucieka...  
+więc wycelować strzelić i znowu wycelować
+]
+
+???
+nauczymy sie
+```
+            setBodyColor(Color.white);
+            setGunColor(Color.white);
+            setRadarColor(Color.white);
+            setScanColor(Color.pink);
+            setBulletColor(Color.pink);
+                        
+           addCustomEvent(new Condition("triggerhit") {
+                  public boolean test() {
+                        return (getEnergy() <= trigger);
+                  }
+            });
+   public void onCustomEvent(CustomEvent e) {
+            // If our custom event "triggerhit" went off,
+            if (e.getCondition().getName().equals("triggerhit")) {
+            }                        
+```
+---
+# Cel #03 - TrackFire
+
+<br/>
+.big[
+- http://robowiki.net/wiki/TrackFire
+- [Kod](http://robocode.sourcearchive.com/documentation/1.6.2/TrackFire_8java-source.html)
+
+ten stoi i strzela, więc wycelować i strzelać...
+plus uciekać jak nas namierzy i trafi
+
+
+Paiting Robot - może się przydać  
+[Kod](http://robocode.sourcearchive.com/documentation/1.6.2/PaintingRobot_8java-source.html)
+]
+???
+on scan i sprawdzanie odchylenia od celu, strzal jak male i gun zimny
+---
+# Cel #04 - Fire 
+
+<br/>
+.big[
+- http://robowiki.net/wiki/Fire
+- [Kod](http://robocode.sourcearchive.com/documentation/1.6.2/Fire_8java-source.html)
+
+Strzela i ucieka...  
+czy nam to robi jakąś różnice?
+
+Robimy "prostopadłe ruchy".
+]
+???
+onHit...
+obracanie sie prostopadle do...
+
+---
+# Cel #05 - Tracker 
+
+<br/>
+.big[
+- http://robowiki.net/wiki/Tracker
+- [Kod](http://robocode.sourcearchive.com/documentation/1.6.2/Tracker_8java-source.html)
+
+Jak wziąść konkretnego osobnika na cel?  
+Może inny "win dance"?
+]
+???
+ale nie jeszcze nie skanować....
+
+---
+# Wzorzec Strategia i Stan
+
+<br/>
+.big[
+https://en.wikipedia.org/wiki/Strategy_pattern
+
+
+https://en.wikipedia.org/wiki/State_pattern
+]
+---
+# Cel #06 - Corners
+
+<br/>
+.big[
+- http://robowiki.net/wiki/Corners
+- [Kod](http://robocode.sourcearchive.com/documentation/1.6.2/Corners_8java-source.html)
+
+
+- danie miedzy rundami...
+- skuteczność strategii...
+- ilość przeciwników!
+
+]
+???
+
+---
+# Cel #07 - Kilku przeciwników 
+
+<br/>
+.big[
+- SittingDuck
+- Target
+- TrackFire
+- Fire
+- Tracker
+- Corners
+
+
+wybrać 2,3,4,6?
+]
+---
+# Cel #08 - VelociRobot
+
+<br/>
+.big[
+- http://robowiki.net/wiki/VelociRobot
+- MyFirstJuniorRobot
+- [Kod](http://robocode.sourcearchive.com/documentation/1.6.2/MyFirstJuniorRobot_8java-source.html)
+- MyFirstRobot 
+- http://robowiki.net/wiki/MyFirstRobot 
+- http://robowiki.net/wiki/Robocode/My_First_Robot
+- [Kod](http://robocode.sourcearchive.com/documentation/1.6.2/MyFirstRobot_8java-source.html)
+]
+
+???
+---
+# Cel #09 - Crazy 
+
+<br/>
+.big[
+- http://robowiki.net/wiki/Crazy
+- [Kod](http://robocode.sourcearchive.com/documentation/1.6.2/Crazy_8java-source.html)
+]
+
+???
+waitFor(new TurnCompleteCondition(this));
+
+---
+# Cel #10 - Kilku przeciwników 
+
+<br/>
+.big[
+- Crazy
+- TrackFire
+- SittingDuck
+- Target
+- TrackFire
+- Fire
+- Tracker
+- Corners
+
+wybrac 2,3,4,6?
+]
+
+---
+# Cel #11 - SpinBot
+
+<br/>
+.big[
+- http://robowiki.net/wiki/SpinBot
+- [Kod](http://robocode.sourcearchive.com/documentation/1.6.2/SpinBot_8java-source.html)
+
+Nic nowego ale jak trudno trafić w coś co się kreci?
+]
+???
+
+---
+# Cel #12 - Walls
+
+<br/>
+.big[
+- http://robowiki.net/wiki/Walls_(robot)
+- [Kod](http://robocode.sourcearchive.com/documentation/1.6.2/Walls_8java-source.html)
+
+Jak już skutecznie będziemy ubijać Wall,  
+SpinBot jeszcze raz
+]
+???
+Rozmiary planszy...
+            // turnLeft to face a wall.
+            // getHeading() 
 
 ---
 layout:false
-background-image: url(img/kl-title43-czitt.png)
+background-image: url(img/kl-title43.png)
 class: title-slaid, center, middle
 <br/><br/><br/><br/>
 #.center[Koniec]
 <br/><br/>
-##.right[Dziekuję za uwage!]
+##.right[Dziękuję!]
 <br/><br/><br/><br/>
 .left[![:scale 10%](img/sages.png)]
 
